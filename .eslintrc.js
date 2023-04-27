@@ -24,7 +24,8 @@ module.exports = {
       {
         functions: true,
         classes: true,
-        variables: false
+        variables: false,
+        endOfLine: 'auto'
       }
     ]
   }

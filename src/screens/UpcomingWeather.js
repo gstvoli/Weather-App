@@ -1,7 +1,5 @@
 import React from 'react'
-// eslint-disable-next-line prettier/prettier
 import {
-  View,
   Text,
   StyleSheet,
   FlatList,
@@ -63,6 +61,7 @@ const UpComingWeather = () => {
   return (
     <SafeAreaView style={container}>
       <ImageBackground
+        // eslint-disable-next-line no-undef
         source={require('../../assets/upcoming-background.jpg')}
         style={image}
       >
