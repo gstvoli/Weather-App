@@ -10,7 +10,7 @@ import { Feather } from '@expo/vector-icons'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import IconText from '../components/IcontText'
 
-const City = () => {
+const City = ({ weatherData }) => {
   const {
     container,
     cityName,
@@ -23,6 +23,8 @@ const City = () => {
     rowLayout,
     imageLayout
   } = styles
+
+  const { name } = weatherData
 
   return (
     <SafeAreaView style={container}>
