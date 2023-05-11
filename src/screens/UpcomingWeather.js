@@ -14,26 +14,26 @@ const UpComingWeather = ({ weatherData }) => {
   )
   const { container, image } = styles
   return (
-    <SafeAreaView style={container}>
-      <ImageBackground
-        // eslint-disable-next-line no-undef
-        source={require('../../assets/upcoming-background.jpg')}
-        style={image}
-      >
-        <FlatList
-          data={weatherData}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.dt_txt}
-        />
-      </ImageBackground>
-    </SafeAreaView>
+    // <SafeAreaView style={container}> I've disabled this because setted a strange margin top
+    <ImageBackground
+      // eslint-disable-next-line no-undef
+      source={require('../../assets/upcoming-background.jpg')}
+      style={image}
+    >
+      <FlatList
+        data={weatherData}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.dt_txt}
+      />
+    </ImageBackground>
+    // </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
+    margintop: StatusBar.currentHeight || 0,
     backgroundColor: 'royalblue'
   },
   image: {

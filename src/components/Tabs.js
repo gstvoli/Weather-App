@@ -1,11 +1,9 @@
 /* eslint-disable react/no-unstable-nested-components */
 import React from 'react'
-
-import City from '../screens/City'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import CurrentWeather from '../screens/CurrentWeather'
 import UpComingWeather from '../screens/UpcomingWeather'
-
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import City from '../screens/City'
 import { Feather } from '@expo/vector-icons'
 
 const Tab = createBottomTabNavigator()
@@ -15,7 +13,7 @@ const Tabs = ({ weather }) => {
     <Tab.Navigator
       screenOptions={{
         tabBarActiveTintColor: 'royalblue',
-        tabBarInactiveTintColor: 'grey',
+        tabBarInactiveTintColor: 'gray',
         tabBarStyle: {
           backgroundColor: 'lightblue'
         },
@@ -55,7 +53,7 @@ const Tabs = ({ weather }) => {
           )
         }}
       >
-        {() => <UpComingWeather weatherData={weather.list[0]} />}
+        {() => <UpComingWeather weatherData={weather.list} />}
       </Tab.Screen>
       <Tab.Screen
         name={'City'}
@@ -69,7 +67,7 @@ const Tabs = ({ weather }) => {
           )
         }}
       >
-        {() => <City weatherData={weather.City} />}
+        {() => <City weatherData={weather.city} />}
       </Tab.Screen>
     </Tab.Navigator>
   )

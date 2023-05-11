@@ -1,21 +1,20 @@
 import React from 'react'
-import { weatherType } from '../utilities/weatherType'
 import { View, Text, StyleSheet } from 'react-native'
+import moment from 'moment'
 import { Feather } from '@expo/vector-icons'
-import Moment from 'moment'
+import { weatherType } from '../utilities/weatherType'
 
 const ListItem = (props) => {
   const { dt_txt, min, max, condition } = props
-  const { item, temp, date } = styles
+  const { item, temp, date, dateTextWrapper } = styles
   return (
     <View style={item}>
-      <Feather name={weatherType[condition].icon} size={50} color={'white'} />
+      <Feather name={weatherType[condition]?.icon} size={50} color={'white'} />
       <View style={styles.dateTextWrapper}>
         <Text style={date}>{moment(dt_txt).format('dddd')}</Text>
         <Text style={date}>{moment(dt_txt).format('h:mm:ss a')}</Text>
       </View>
-      <Text style={temp}>{`${Math.round(min)}º | ${Math.round(max)}º`}</Text>
-      <Text>{max}</Text>
+      <Text style={temp}>{`${Math.round(min)}º / ${Math.round(max)}º`}</Text>
     </View>
   )
 }
@@ -29,7 +28,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     borderWidth: 5,
-    backgroundColor: 'orange'
+    backgroundColor: 'indianred'
   },
   temp: {
     color: 'white',

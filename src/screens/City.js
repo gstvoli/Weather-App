@@ -6,11 +6,12 @@ import {
   StatusBar,
   View
 } from 'react-native'
-import { Feather } from '@expo/vector-icons'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import moment from 'moment'
 import IconText from '../components/IcontText'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 const City = ({ weatherData }) => {
+  const { name, country, population, sunrise, sunset } = weatherData
   const {
     container,
     cityName,
@@ -24,42 +25,40 @@ const City = ({ weatherData }) => {
     imageLayout
   } = styles
 
-  const { name } = weatherData
-
   return (
-    <SafeAreaView style={container}>
-      <ImageBackground
-        source={require('../../assets/city-background.jpg')}
-        style={imageLayout}
-      >
-        <Text style={[cityName, cityText]}>London</Text>
-        <Text style={[countryName, cityText]}>UK</Text>
-        <View style={(populationWrapper, rowLayout)}>
-          <IconText
-            iconName={'user'}
-            iconColor={'red'}
-            bodyText={'8000'}
-            bodyTextStyles={populationText}
-          />
-        </View>
+    // <SafeAreaView style={container}> I've disabled this too because of the strange margin on top
+    <ImageBackground
+      source={require('../../assets/city-background.jpg')}
+      style={imageLayout}
+    >
+      <Text style={[cityName, cityText]}>{name}</Text>
+      <Text style={[countryName, cityText]}>{country}</Text>
+      <View style={(populationWrapper, rowLayout)}>
+        <IconText
+          iconName={'user'}
+          iconColor={'red'}
+          bodyText={`Population: ${population}`}
+          bodyTextStyles={populationText}
+        />
+      </View>
 
-        <View style={[riseSetWrapper, rowLayout]}>
-          <IconText
-            iconName={'sunrise'}
-            iconColor={'white'}
-            bodyText={'10:46:58am'}
-            bodyTextStyles={riseSetText}
-          />
+      <View style={[riseSetWrapper, rowLayout]}>
+        <IconText
+          iconName={'sunrise'}
+          iconColor={'white'}
+          bodyText={moment(sunrise).format('h:mm:ss a')}
+          bodyTextStyles={riseSetText}
+        />
 
-          <IconText
-            iconName={'sunset'}
-            iconColor={'white'}
-            bodyText={'17:28:15pm'}
-            bodyTextStyles={riseSetText}
-          />
-        </View>
-      </ImageBackground>
-    </SafeAreaView>
+        <IconText
+          iconName={'sunset'}
+          iconColor={'white'}
+          bodyText={moment(sunset).format('h:mm:ss a')}
+          bodyTextStyles={riseSetText}
+        />
+      </View>
+    </ImageBackground>
+    // </SafeAreaView>
   )
 }
 
